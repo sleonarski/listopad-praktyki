@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>First starter page</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container my-5">
+    <h2>Employees list</h2>
+    <a th:href="@{'/add-employee-form'}"
+       class="btn btn-primary btn-sm mb-3 mt-3">Add Employee</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th><p>id</p></th>
+        <th><p>name</p></th>
+        <th><p>surname</p></th>
+        <th><p>age</p></th>
+        <th><p>email</p></th>
+        <th><p>pesel</p></th>
+        <th><p>actions</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.getId()}"></td>
+        <td th:text="${employee.getName()}"></td>
+        <td th:text="${employee.getSurname()}"></td>
+        <td th:text="${employee.getAge()}"></td>
+        <td th:text="${employee.getEmail()}"></td>
+        <td th:text="${employee.getPesel()}"></td>
+        <td>
+            <a th:href="@{'/update-employee-form/' + ${employee.id}}"
+               class="btn btn-success btn-sm">Update</a>
+        </td>
+        <td>
+            <a th:href="@{'/delete-employee/' + ${employee.id}}"
+               class="btn btn-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</div>
+</body>
+</html>
